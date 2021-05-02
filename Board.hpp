@@ -30,7 +30,7 @@ namespace pandemic{
 			Color get_color(City city);
 			bool has_cure(Color color);
 			void set_cure(Color color);
-			void remove_cure();
+			void remove_cures();
 			unsigned int& operator[] (City city);
 			friend std::ostream& operator<< (std::ostream& os, const Board& board);
 	};

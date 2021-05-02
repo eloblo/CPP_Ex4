@@ -91,7 +91,7 @@ namespace pandemic{
 	{
 		cures.at(color) = true;
 	}
-	void Board::remove_cure()
+	void Board::remove_cures()
 	{
 		for (pair<const Color,bool> &it : cures)
 		{

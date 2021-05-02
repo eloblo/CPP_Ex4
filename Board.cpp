@@ -91,6 +91,13 @@ namespace pandemic{
 	{
 		cures.at(color) = true;
 	}
+	void Board::remove_cure()
+	{
+		for (pair<const Color,bool> &it : cures)
+		{
+			it.second = false;
+		}
+	}
 	unsigned int& Board::operator[](City city)
 	{
 		return cities.at(city).level;

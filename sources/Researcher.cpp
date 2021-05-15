@@ -5,7 +5,7 @@ namespace pandemic {
 	Player& Researcher::discover_cure(Color color)
 	{
 		if (board->has_cure(color)) { return *this;}
-		vector<City> discard(card_req);
+		vector<City> discard((size_t)card_req);
 		size_t amount = 0;
 		for (City card : hand)
 		{

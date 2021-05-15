@@ -13,7 +13,7 @@ namespace pandemic{
 				bool research_station;
 				const Color color;
 				const std::vector<City> neighbors;
-				unsigned int level;
+				int level;
 			};
 			std::map<City, city_struct> cities;
 			std::map<Color, bool> cures;
@@ -31,7 +31,8 @@ namespace pandemic{
 			bool has_cure(Color color);
 			void set_cure(Color color);
 			void remove_cures();
-			unsigned int& operator[] (City city);
+			void remove_stations();
+			int& operator[] (City city);
 			friend std::ostream& operator<< (std::ostream& os, const Board& board);
 	};
 }

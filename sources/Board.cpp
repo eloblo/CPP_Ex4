@@ -32,7 +32,7 @@ namespace pandemic{
 		cities.insert(pair<City,city_struct> (City::London, city_struct{ false, Color::Blue, vector<City>{City::NewYork, City::Madrid, City::Essen, City::Paris}, 0 }));
 		cities.insert(pair<City,city_struct> (City::LosAngeles, city_struct{ false, Color::Yellow, vector<City>{City::SanFrancisco, City::Chicago, City::MexicoCity, City::Sydney}, 0 }));
 		cities.insert(pair<City,city_struct> (City::Madrid, city_struct{ false, Color::Blue, vector<City>{City::London, City::NewYork, City::Paris, City::SaoPaulo, City::Algiers}, 0 }));
-		cities.insert(pair<City,city_struct> (City::Manila, city_struct{ false, Color::Red, vector<City>{City::Taipei, City::SanFrancisco, City::HoChiMinhCity, City::Sydney}, 0 }));
+		cities.insert(pair<City,city_struct> (City::Manila, city_struct{ false, Color::Red, vector<City>{City::Taipei, City::SanFrancisco, City::HoChiMinhCity, City::Sydney, City::HongKong}, 0 }));
 		cities.insert(pair<City,city_struct> (City::MexicoCity, city_struct{ false, Color::Yellow, vector<City>{City::LosAngeles, City::Chicago, City::Miami, City::Lima, City::Bogota}, 0 }));
 		cities.insert(pair<City,city_struct> (City::Miami, city_struct{ false, Color::Yellow, vector<City>{City::Atlanta, City::MexicoCity, City::Washington, City::Bogota}, 0 }));
 		cities.insert(pair<City,city_struct> (City::Milan, city_struct{ false, Color::Blue, vector<City>{City::Essen, City::Paris, City::Istanbul}, 0 }));
@@ -98,7 +98,14 @@ namespace pandemic{
 			it.second = false;
 		}
 	}
-	unsigned int& Board::operator[](City city)
+	void Board::remove_stations()
+	{
+		for (pair<const City,city_struct> &it : cities)
+		{
+			it.second.research_station = false;
+		}
+	}
+	int& Board::operator[](City city)
 	{
 		return cities.at(city).level;
 	}

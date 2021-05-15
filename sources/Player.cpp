@@ -8,7 +8,7 @@ namespace pandemic{
 	
 	Player& Player::drive(City city)
 	{
-		if(city == current_city) { return *this;}
+		if(city == current_city) { throw invalid_argument("cant drive to the same current city\n");}
 		if(board->within_reach(current_city, city)){ current_city = city;}
 		else { throw invalid_argument("the city is not in range\n"); }
 		return *this;
@@ -25,7 +25,7 @@ namespace pandemic{
 	
 	Player& Player::fly_direct(City city)
 	{
-		if(city == current_city) { return *this;}
+		if(city == current_city) { throw invalid_argument("cant fly to the same current city\n");}
 		int loc = card_location(city);
 		if(loc != -1)
 		{
@@ -37,7 +37,7 @@ namespace pandemic{
 	}
 	Player& Player::fly_charter(City city)
 	{
-		if(city == current_city) { return *this;}
+		if(city == current_city) { throw invalid_argument("cant fly to the same current city\n");}
 		int loc = card_location(current_city);
 		if (loc != -1) 
 		{
@@ -50,7 +50,7 @@ namespace pandemic{
 	}
 	Player& Player::fly_shuttle(City city)
 	{
-		if(city == current_city) { return *this;}
+		if(city == current_city) { throw invalid_argument("cant fly to the same current city\n");}
 		if (board->has_station(current_city) && board->has_station(city)) { current_city = city; }
 		else { throw invalid_argument("there is no shuttle fliets\n"); }
 		return *this;
@@ -71,7 +71,7 @@ namespace pandemic{
 	{
 		if (board->has_cure(color)) { return *this;}
 		if (!board->has_station(current_city)) { throw invalid_argument("there is no station in the city\n");} 
-		vector<City> discard(card_req);
+		vector<City> discard((size_t)card_req);
 		size_t amount = 0;
 		for (City card : hand)
 		{
@@ -108,5 +108,9 @@ namespace pandemic{
 		int loc = card_location(city);
 		if(loc == -1) { hand.push_back(city);}
 		return *this;
+	}
+	void Player::remove_cards()
+	{
+		hand.clear();
 	}
 }

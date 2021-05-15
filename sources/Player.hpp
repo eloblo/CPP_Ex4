@@ -8,7 +8,7 @@ namespace pandemic{
 	class Player{
 		protected:
 			Board* board;
-			size_t card_req = 5;
+			int card_req = 5;
 			City current_city;
 			std::vector<City> hand;
 			int card_location(City city);
@@ -26,5 +26,6 @@ namespace pandemic{
 				return "Player";
 			}
 			Player& take_card(City city);
+			void remove_cards();
 	};
 }

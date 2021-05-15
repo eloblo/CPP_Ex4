@@ -4,6 +4,7 @@ using namespace std;
 namespace pandemic {
 	Player& Dispatcher::fly_direct(City city)
 	{
+		if(city == current_city) { throw invalid_argument("cant fly to the same current city\n");}
 		if (board->has_station(current_city)) { current_city = city; }
 		else 
 		{

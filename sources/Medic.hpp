@@ -5,7 +5,7 @@
 namespace pandemic {
 	class Medic : public Player {
 	private:
-		void treat_free();
+		void treat_free();   //treat a city aoutomaticly when there is a cure
 	public:
 		Medic(Board board, City city) : Player(board, city) {}
 		Player& treat(City city);

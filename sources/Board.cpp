@@ -4,8 +4,8 @@ using namespace std;
 namespace pandemic{
 	Board::Board()
 	{
-		cures = { {Color::Red, false}, {Color::Black, false}, {Color::Blue, false}, {Color::Yellow, false} };
-		
+		cures = { {Color::Red, false}, {Color::Black, false}, {Color::Blue, false}, {Color::Yellow, false} };   //set cures
+		//set cities on the board
 		cities.insert(pair<City,city_struct> (City::Algiers, city_struct{ false, Color::Black, vector<City>{City::Madrid, City::Paris, City::Istanbul, City::Cairo}, 0 }));
 		cities.insert(pair<City,city_struct> (City::Atlanta, city_struct{ false, Color::Blue, vector<City>{City::Chicago, City::Miami, City::Washington}, 0 }));
 		cities.insert(pair<City,city_struct> (City::Baghdad, city_struct{ false, Color::Black, vector<City>{City::Tehran, City::Istanbul, City::Cairo, City::Riyadh, City::Karachi}, 0 }));
@@ -57,7 +57,7 @@ namespace pandemic{
 	}
 	bool Board::is_clean() const
 	{
-		for (const pair<const City,city_struct> &it : cities)
+		for (const pair<const City,city_struct> &it : cities)  //check if every city disease level is 0
 		{
 			if (it.second.level != 0) { return false; }
 		}
@@ -65,7 +65,7 @@ namespace pandemic{
 	}
 	bool Board::within_reach(City src, City dst)
 	{
-		for (City ct : cities.at(src).neighbors)
+		for (City ct : cities.at(src).neighbors)    //check if dst is neighboring src
 		{
 			if (ct == dst) { return true; }
 		}
@@ -73,43 +73,43 @@ namespace pandemic{
 	}
 	bool Board::has_station(City city)
 	{
-		return cities.at(city).research_station;
+		return cities.at(city).research_station;  //return existence of a station
 	}
 	void Board::build(City city)
 	{
-		cities.at(city).research_station = true;
+		cities.at(city).research_station = true;  //build a station
 	}
 	Color Board::get_color(City city)
 	{
-		return cities.at(city).color;
+		return cities.at(city).color;   //return a city's color
 	}
 	bool Board::has_cure(Color color)
 	{
-		return cures.at(color);
+		return cures.at(color);    //return existence of a cure
 	}
 	void Board::set_cure(Color color)
 	{
-		cures.at(color) = true;
+		cures.at(color) = true;   //set color's cure to true
 	}
 	void Board::remove_cures()
 	{
-		for (pair<const Color,bool> &it : cures)
+		for (pair<const Color,bool> &it : cures)   //for every color set cure to false
 		{
 			it.second = false;
 		}
 	}
 	void Board::remove_stations()
 	{
-		for (pair<const City,city_struct> &it : cities)
+		for (pair<const City,city_struct> &it : cities)  //for every city set station to false
 		{
 			it.second.research_station = false;
 		}
 	}
 	int& Board::operator[](City city)
 	{
-		return cities.at(city).level;
+		return cities.at(city).level;   //return current disease level
 	}
-	std::ostream& operator<<(std::ostream& os, const Board& board)
+	std::ostream& operator<<(std::ostream& os, const Board& board)   //print board information
 	{
 		os << boolalpha;
 		os << "The board is clear: " << board.is_clean() << "\n";

@@ -7,13 +7,13 @@
 namespace pandemic{
 	class Player{
 		protected:
-			Board* board;
-			int card_req = 5;
-			City current_city;
-			std::vector<City> hand;
-			int card_location(City city);
+			Board* board;                  //pointer to the given board
+			int card_req = 5;              //minimum number of cards to discover a cure
+			City current_city;             //player current location
+			std::vector<City> hand;        //the cards the player has
+			int card_location(City city);  //the location of a card in player's hand
 		public:
-			Player(Board& b, City city);
+			Player(Board& b, City city);                   
 			virtual Player& drive(City city);
 			virtual Player& fly_direct(City city);
 			virtual Player& fly_charter(City city);
